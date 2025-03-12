@@ -1,0 +1,412 @@
+/* 主页样式 */
+.hero-section {
+  padding: 60px 0;
+  text-align: center;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px var(--shadow-color);
+  margin-bottom: 40px;
+}
+
+.hero-title {
+  font-size: 48px;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.hero-subtitle {
+  font-size: 20px;
+  color: var(--light-text);
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+}
+
+.hero-description {
+  max-width: 600px;
+  margin: 0 auto 30px;
+  color: var(--text-color);
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.primary-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.primary-btn:hover {
+  background-color: var(--highlight-color);
+  color: white;
+}
+
+.secondary-btn {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  padding: 12px 25px;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.secondary-btn:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.section-title {
+  text-align: center;
+  color: var(--primary-color);
+  font-size: 28px;
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+
+.features-section {
+  margin-bottom: 60px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.feature-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 2px 10px var(--shadow-color);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background-color);
+}
+
+.wisdom-icon {
+  background-image: url('https://images.unsplash.com/photo-1519682577862-22b62b24e493?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80');
+  background-size: cover;
+  background-position: center;
+}
+
+.meditation-icon {
+  background-image: url('https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80');
+  background-size: cover;
+  background-position: center;
+}
+
+.question-icon {
+  background-image: url('https://images.unsplash.com/photo-1531379410502-63bfe8cdaf6f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80');
+  background-size: cover;
+  background-position: center;
+}
+
+.feature-title {
+  color: var(--primary-color);
+  font-size: 20px;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.feature-description {
+  color: var(--text-color);
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.feature-link {
+  color: var(--primary-color);
+  font-weight: 500;
+  position: relative;
+  display: inline-block;
+}
+
+.feature-link::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.feature-link:hover::after {
+  width: 100%;
+}
+
+.wisdom-section {
+  margin-bottom: 60px;
+}
+
+.wisdom-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+/* 页面通用样式 */
+.page-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.page-title {
+  color: var(--primary-color);
+  font-size: 36px;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.page-description {
+  color: var(--light-text);
+  font-size: 18px;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* 智慧页面样式 */
+.filter-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.filter-btn {
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.filter-btn.active {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+}
+
+/* 冥想页面样式 */
+.meditation-timer-section {
+  margin-bottom: 60px;
+}
+
+.meditation-guides-section {
+  margin-bottom: 60px;
+}
+
+.guides-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.guide-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 25px;
+  box-shadow: 0 2px 10px var(--shadow-color);
+}
+
+.guide-title {
+  color: var(--primary-color);
+  font-size: 20px;
+  margin-bottom: 20px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.guide-steps {
+  padding-left: 20px;
+}
+
+.guide-step {
+  color: var(--text-color);
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.meditation-tips-section {
+  margin-bottom: 60px;
+}
+
+.tips-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 25px;
+  box-shadow: 0 2px 10px var(--shadow-color);
+}
+
+.tips-list {
+  list-style: none;
+}
+
+.tip-item {
+  color: var(--text-color);
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  padding-left: 25px;
+  position: relative;
+}
+
+.tip-item::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--primary-color);
+  font-size: 20px;
+}
+
+/* 问道解惑页面样式 */
+.answers-section {
+  margin-bottom: 60px;
+}
+
+.no-answers-section {
+  margin-bottom: 60px;
+}
+
+.no-answers-message {
+  background-color: white;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 2px 10px var(--shadow-color);
+  text-align: center;
+}
+
+.no-answers-message h3 {
+  color: var(--primary-color);
+  font-size: 20px;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.no-answers-message p {
+  color: var(--light-text);
+  font-size: 16px;
+}
+
+/* 404页面样式 */
+.not-found-container {
+  text-align: center;
+  padding: 60px 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.not-found-title {
+  font-size: 100px;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+  font-weight: 300;
+}
+
+.not-found-subtitle {
+  font-size: 28px;
+  color: var(--text-color);
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.not-found-text {
+  color: var(--light-text);
+  font-size: 18px;
+  margin-bottom: 30px;
+  line-height: 1.8;
+}
+
+.not-found-btn {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 12px 25px;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.not-found-btn:hover {
+  background-color: var(--highlight-color);
+  color: white;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 36px;
+  }
+  
+  .hero-subtitle {
+    font-size: 18px;
+  }
+  
+  .hero-description {
+    font-size: 16px;
+  }
+  
+  .section-title {
+    font-size: 24px;
+  }
+  
+  .page-title {
+    font-size: 30px;
+  }
+  
+  .page-description {
+    font-size: 16px;
+  }
+  
+  .features-grid, .wisdom-grid, .guides-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .not-found-title {
+    font-size: 80px;
+  }
+  
+  .not-found-subtitle {
+    font-size: 24px;
+  }
+}

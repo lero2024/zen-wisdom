@@ -1,0 +1,143 @@
+.meditation-timer {
+  background-color: white;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 2px 10px var(--shadow-color);
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.timer-display {
+  margin-bottom: 30px;
+}
+
+.time {
+  font-size: 72px;
+  font-weight: 300;
+  color: var(--primary-color);
+  font-family: monospace;
+}
+
+.duration-selector {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.duration-btn {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 8px 15px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.duration-btn:hover:not(.disabled) {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+}
+
+.duration-btn.active {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.duration-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.timer-controls {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.control-btn {
+  padding: 12px 25px;
+  border-radius: 4px;
+  font-size: 16px;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.start {
+  background-color: var(--primary-color);
+  color: white;
+  width: 200px;
+}
+
+.start:hover {
+  background-color: var(--highlight-color);
+}
+
+.pause, .resume {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+}
+
+.pause:hover, .resume:hover {
+  background-color: #c5b7a7;
+}
+
+.reset {
+  background-color: #f0f0f0;
+  color: var(--text-color);
+}
+
+.reset:hover {
+  background-color: #e0e0e0;
+}
+
+.completion-message {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: var(--background-color);
+  border-radius: 8px;
+}
+
+.completion-message p {
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+
+.completion-message p:first-child {
+  font-size: 20px;
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.restart-btn {
+  margin-top: 15px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.restart-btn:hover {
+  background-color: var(--highlight-color);
+}
+
+@media (max-width: 768px) {
+  .meditation-timer {
+    padding: 20px;
+  }
+  
+  .time {
+    font-size: 60px;
+  }
+  
+  .control-btn {
+    padding: 10px 20px;
+  }
+}
