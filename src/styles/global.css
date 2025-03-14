@@ -5,27 +5,31 @@
 }
 
 :root {
-  --primary-color: #7a5e3a;
-  --secondary-color: #d6c8b8;
-  --background-color: #f7f5f0;
+  --primary-color: #333;
+  --secondary-color: #666;
+  --background-color: #f8f8f8;
   --text-color: #333;
   --light-text: #777;
-  --border-color: #e0dcd3;
-  --highlight-color: #8c7851;
-  --shadow-color: rgba(0, 0, 0, 0.05);
+  --border-color: #e0e0e0;
+  --highlight-color: #000;
+  --shadow-color: rgba(0, 0, 0, 0.03);
+  --card-bg: #fff;
+  --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
   font-family: 'Noto Serif SC', serif;
   background-color: var(--background-color);
   color: var(--text-color);
-  line-height: 1.6;
+  line-height: 1.8;
+  font-weight: 300;
+  letter-spacing: 0.02em;
 }
 
 a {
   text-decoration: none;
   color: var(--primary-color);
-  transition: color 0.3s ease;
+  transition: var(--transition);
 }
 
 a:hover {
@@ -35,38 +39,41 @@ a:hover {
 button {
   cursor: pointer;
   font-family: 'Noto Serif SC', serif;
+  font-weight: 300;
+  letter-spacing: 0.02em;
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
 .section {
-  margin: 40px 0;
+  margin: 60px 0;
 }
 
 .card {
-  background: white;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 10px var(--shadow-color);
-  margin-bottom: 20px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  padding: 30px;
+  margin-bottom: 30px;
+  transition: var(--transition);
 }
 
 .btn {
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 1px solid var(--border-color);
+  padding: 12px 24px;
+  font-size: 14px;
+  transition: var(--transition);
+  letter-spacing: 0.05em;
 }
 
 .btn:hover {
-  background-color: var(--highlight-color);
+  background-color: var(--primary-color);
+  color: white;
 }
 
 .text-center {
@@ -84,6 +91,5 @@ button {
   color: #d8000c;
   background-color: #ffbaba;
   padding: 10px;
-  border-radius: 4px;
   margin: 10px 0;
 }
