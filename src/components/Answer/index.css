@@ -52,10 +52,65 @@
 }
 
 .answer-text {
-  color: var(--text-color);
-  font-size: 16px;
   line-height: 1.8;
-  font-weight: 300;
+  margin-bottom: 1.5em;
+}
+
+.answer-text h3 {
+  color: var(--primary-color);
+  font-size: 1.2em;
+  margin: 1.5em 0 1em;
+  font-weight: 500;
+}
+
+.answer-text ul,
+.answer-text ol {
+  margin: 1em 0;
+  padding-left: 2em;
+}
+
+.answer-text ul ul,
+.answer-text ul ol,
+.answer-text ol ul,
+.answer-text ol ol {
+  margin: 0.5em 0;
+}
+
+.answer-text li {
+  margin-bottom: 0.8em;
+  position: relative;
+}
+
+.answer-text ul li::before {
+  content: '•';
+  color: var(--primary-color);
+  position: absolute;
+  left: -1.2em;
+}
+
+.answer-text ol {
+  counter-reset: list-counter;
+}
+
+.answer-text ol li {
+  counter-increment: list-counter;
+}
+
+.answer-text ol li::before {
+  content: counter(list-counter) '.';
+  color: var(--primary-color);
+  position: absolute;
+  left: -1.8em;
+  min-width: 1.5em;
+  text-align: right;
+}
+
+.highlight {
+  color: var(--primary-color);
+  font-weight: 500;
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+  background-color: rgba(var(--primary-rgb), 0.1);
 }
 
 @media (max-width: 768px) {

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import QuestionForm from '../components/QuestionForm';
 import Answer from '../components/Answer';
+import { askQuestion } from '../api/deepseekApi';
 
 const Questions = () => {
   const [answers, setAnswers] = useState([]);
@@ -27,34 +28,36 @@ const Questions = () => {
     '这个问题涉及到我们如何看待自己和世界。佛陀鼓励我们不要盲目相信，而是通过自己的体验和智慧来验证真理。建议你保持开放的心态，通过冥想和反思来探索这个问题的答案。'
   ];
   
-  const handleQuestionSubmit = (question) => {
-    // 检查是否有匹配的预设回答
-    let answer = '';
-    
-    // 简单的关键词匹配
-    for (const key in answerDatabase) {
-      if (question.toLowerCase().includes(key.toLowerCase()) || 
-          key.toLowerCase().includes(question.toLowerCase())) {
-        answer = answerDatabase[key];
-        break;
-      }
-    }
-    
-    // 如果没有匹配到，使用通用回答
-    if (!answer) {
+  const handleQuestionSubmit = async (question) => {
+    try {
+      // 调用DeepSeek API获取回答
+      const answer = await askQuestion(question);
+      
+      // 创建当前日期字符串
+      const today = new Date();
+      const dateStr = `${today.getFullYear()}年${today.getMonth() + 1}月${today.getDate()}日`;
+      
+      // 添加到回答列表
+      setAnswers([
+        { id: Date.now(), question, answer, date: dateStr },
+        ...answers
+      ]);
+    } catch (error) {
+      // 如果API调用失败，使用预设回答
+      console.error('DeepSeek API调用失败:', error);
+      
+      // 使用预设回答作为备选
       const randomIndex = Math.floor(Math.random() * genericAnswers.length);
-      answer = genericAnswers[randomIndex];
+      const fallbackAnswer = genericAnswers[randomIndex];
+      
+      const today = new Date();
+      const dateStr = `${today.getFullYear()}年${today.getMonth() + 1}月${today.getDate()}日`;
+      
+      setAnswers([
+        { id: Date.now(), question, answer: fallbackAnswer, date: dateStr },
+        ...answers
+      ]);
     }
-    
-    // 创建当前日期字符串
-    const today = new Date();
-    const dateStr = `${today.getFullYear()}年${today.getMonth() + 1}月${today.getDate()}日`;
-    
-    // 添加到回答列表
-    setAnswers([
-      { id: Date.now(), question, answer, date: dateStr },
-      ...answers
-    ]);
   };
   
   return (

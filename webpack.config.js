@@ -1,5 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+require('dotenv').config();
 
 module.exports = {
   mode: 'development',
@@ -42,14 +44,18 @@ module.exports = {
     extensions: ['.js', '.jsx']
   },
   devServer: {
-    port: 3074,
+    port: 3075,
+    host: '0.0.0.0',
     historyApiFallback: true,
-    allowedHosts: ['all', '.alibaba-inc.com']
+    allowedHosts: 'all'
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
       inject: 'body'
+    }),
+    new webpack.DefinePlugin({
+      'process.env.DEEPSEEK_API_KEY': JSON.stringify(process.env.DEEPSEEK_API_KEY)
     })
   ]
 };

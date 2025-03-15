@@ -5,19 +5,21 @@ const QuestionForm = ({ onSubmit }) => {
   const [question, setQuestion] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     if (!question.trim()) return;
     
     setIsSubmitting(true);
     
-    // 模拟提交延迟
-    setTimeout(() => {
-      onSubmit(question);
+    try {
+      await onSubmit(question);
       setQuestion('');
+    } catch (error) {
+      console.error('提交问题失败:', error);
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
   
   return (
@@ -39,10 +41,15 @@ const QuestionForm = ({ onSubmit }) => {
         
         <button 
           type="submit" 
-          className="submit-btn"
-          disabled={isSubmitting || !question.trim()}
+          className="submit-button"
+          disabled={isSubmitting}
         >
-          {isSubmitting ? '提交中...' : '寻求解答'}
+          {isSubmitting ? (
+            <>
+              <span className="loading-spinner"></span>
+              提交中...
+            </>
+          ) : '提交问题'}
         </button>
       </form>
     </div>
