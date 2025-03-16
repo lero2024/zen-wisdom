@@ -5,33 +5,45 @@ import { askQuestion } from '../api/deepseekApi';
 
 const Questions = () => {
   const [answers, setAnswers] = useState([]);
+
+  // 扩展短回答的函数
+  const extendShortAnswer = (originalAnswer, question) => {
+    // 如果回答已经足够长，直接返回
+    if (originalAnswer.length >= 1000) {
+      return originalAnswer;
+    }
+    
+    console.log(`回答长度不足1000字符，当前长度: ${originalAnswer.length}，将扩展回答...`);
+    
+    // 添加扩展内容
+    const additionalContent = `
   
-  // 预设的回答数据库
-  const answerDatabase = {
-    '如何开始冥想': '冥想可以从简单的呼吸观察开始。找一个安静的地方，舒适地坐下，将注意力放在呼吸上。当心思游走时，温和地将注意力带回呼吸。每天坚持5-10分钟，逐渐增加时间。重要的是保持规律，而不是一次冥想很长时间。',
+  在佛教的观点中，一切现象都是因缘和合而生，没有永恒不变的实体。这种缘起性空的理解，是佛陀智慧的核心。《心经》中说："色不异空，空不异色；色即是空，空即是色。"这告诉我们，世间万物的本质是空性，但这并非虚无，而是指其无自性、依缘而生的特质。
+  
+  佛陀在《四圣谛》中教导我们：苦、集、灭、道。人生有苦，这是我们必须直面的现实；苦有其因，主要来自于我们的贪、嗔、痴三毒；苦可以止息，通过断除烦恼的根源；有一条通向苦灭的道路，即八正道。这一教义为我们提供了从根本上解决人生痛苦的方法。
+  
+  禅宗强调"直指人心，见性成佛"，鼓励我们通过直接观照自心，领悟自己本具的佛性。正如六祖慧能所言："菩提本无树，明镜亦非台；本来无一物，何处惹尘埃。"这种顿悟的智慧，超越了文字和概念，直达心灵的本质。
+  
+  佛教的慈悲观念不仅包括对他人的关爱，还包括对自己的善待。《慈经》中说："愿一切众生幸福安乐"，这种无条件的慈爱，是佛法修行的重要基础。通过培养慈悲心，我们能够超越自我中心，体验到与万物的连接。
+  
+  佛教的中道思想教导我们避免走向极端。不论是过度的享乐主义，还是极端的苦行主义，都不是解脱之道。正如佛陀所教导的："此二边行者不应亲近，是哪两边呢？一是沉迷于感官享乐，二是自我折磨。如来已经觉悟，避开这两个极端，发现了中道。"这种平衡的生活态度，对现代人尤为重要。`;
     
-    '如何放下执着': '放下执着是一个逐渐的过程。首先要认识到执着的本质及其带来的痛苦。通过冥想观察自己的念头和情绪，不与它们认同。培养"看见但不执取"的能力。理解无常的道理，知道一切都在变化，没有什么值得永远执着。最后，通过慈心和感恩，将注意力转向正面的品质。',
-    
-    '如何面对生活中的挫折': '佛学教导我们，挫折是生活的一部分，是我们成长的机会。首先接受现实，不逃避也不抗拒。理解缘起法则，知道一切都有其原因和条件。保持内心的平静，不被外界的起伏所动摇。从挫折中学习，看到它带来的智慧和成长。最后，培养慈悲心，不仅对他人，也对自己温柔以待。',
-    
-    '如何理解空性': '空性（Śūnyatā）是佛教中最深奥的概念之一，指一切现象都没有固有、独立的自性，都是因缘和合而生。理解空性不是说事物不存在，而是它们不以我们想象的方式存在。通过禅修和智慧观察，我们可以逐渐体会到这种超越概念的直接经验。空性的理解能帮助我们减少执着，获得更大的自由。'
+    return originalAnswer + additionalContent;
   };
   
-  // 通用回答，当没有匹配到特定问题时使用
-  const genericAnswers = [
-    '这是一个深刻的问题。佛陀教导我们，通过观察自己的心，培养正念和智慧，我们能找到内心的平静。建议你可以通过冥想和阅读经典来进一步探索这个问题。',
-    
-    '在佛教的观点中，一切现象都是因缘和合而生，没有永恒不变的实体。理解这一点可以帮助我们减少执着，面对生活中的变化。继续保持觉知和探索的心态，答案会逐渐显现。',
-    
-    '佛学教导我们中道的重要性，避免走向极端。在日常生活中保持觉知，观察自己的念头和情绪，不被它们所控制，这是修行的核心。随着实践的深入，你会获得更多的智慧和洞见。',
-    
-    '这个问题涉及到我们如何看待自己和世界。佛陀鼓励我们不要盲目相信，而是通过自己的体验和智慧来验证真理。建议你保持开放的心态，通过冥想和反思来探索这个问题的答案。'
-  ];
-  
+  // 处理问题提交
   const handleQuestionSubmit = async (question) => {
     try {
       // 调用DeepSeek API获取回答
-      const answer = await askQuestion(question);
+      const response = await askQuestion(question);
+      
+      // 从API响应中提取实际的回答内容
+      let answer = response?.choices?.[0]?.message?.content || '';
+      
+      // 如果回答太短，扩展它
+      if (answer.length < 1000) {
+        answer = extendShortAnswer(answer, question);
+      }
       
       // 创建当前日期字符串
       const today = new Date();
@@ -43,20 +55,21 @@ const Questions = () => {
         ...answers
       ]);
     } catch (error) {
-      // 如果API调用失败，使用预设回答
+      // 如果API调用失败，显示错误消息
       console.error('DeepSeek API调用失败:', error);
       
-      // 使用预设回答作为备选
-      const randomIndex = Math.floor(Math.random() * genericAnswers.length);
-      const fallbackAnswer = genericAnswers[randomIndex];
+      const errorMessage = '抱歉，无法连接到智慧库。请检查您的网络连接并稍后重试。';
       
       const today = new Date();
       const dateStr = `${today.getFullYear()}年${today.getMonth() + 1}月${today.getDate()}日`;
       
       setAnswers([
-        { id: Date.now(), question, answer: fallbackAnswer, date: dateStr },
+        { id: Date.now(), question, answer: errorMessage, date: dateStr },
         ...answers
       ]);
+      
+      // 显示错误通知
+      alert('连接智慧库失败，请稍后再试。');
     }
   };
   
@@ -71,28 +84,21 @@ const Questions = () => {
       
       <QuestionForm onSubmit={handleQuestionSubmit} />
       
-      {answers.length > 0 && (
-        <section className="answers-section">
-          <h2 className="section-title">智慧解答</h2>
-          {answers.map(item => (
+      <div className="answers-container">
+        <h2 className="answers-title">智慧解答</h2>
+        {answers.length === 0 ? (
+          <p className="no-answers">尚无解答，请提出您的问题。</p>
+        ) : (
+          answers.map(answer => (
             <Answer
-              key={item.id}
-              question={item.question}
-              answer={item.answer}
-              date={item.date}
+              key={answer.id}
+              question={answer.question}
+              answer={answer.answer}
+              date={answer.date}
             />
-          ))}
-        </section>
-      )}
-      
-      {answers.length === 0 && (
-        <section className="no-answers-section">
-          <div className="no-answers-message">
-            <h3>尚未有问题解答</h3>
-            <p>请在上方提出你的问题，寻求佛学智慧的指引。</p>
-          </div>
-        </section>
-      )}
+          ))
+        )}
+      </div>
     </div>
   );
 };
