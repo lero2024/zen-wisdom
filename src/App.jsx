@@ -10,10 +10,27 @@ import NotFound from './pages/NotFound';
 import './styles/App.css';
 
 const App = () => {
+  const [error, setError] = React.useState(null);
+
+  React.useEffect(() => {
+    console.log('App mounted');
+    console.log('Current route:', window.location.pathname);
+    console.log('Environment:', process.env.NODE_ENV);
+  }, []);
+
+  if (error) {
+    return (
+      <div style={{ padding: '20px', color: 'red' }}>
+        <h1>Something went wrong</h1>
+        <pre>{error.toString()}</pre>
+      </div>
+    );
+  }
+
   return (
-    <div className="app">
+    <div className="app" style={{ backgroundColor: '#f8f8f8', minHeight: '100vh' }}>
       <Header />
-      <main className="main-content">
+      <main className="main-content" style={{ flex: 1, padding: '20px' }}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/wisdom" element={<Wisdom />} />
